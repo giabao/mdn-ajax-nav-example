@@ -187,7 +187,7 @@ const ajaxRequest = new (function () {
 	oCover.appendChild(oLoadingImg);
 	oLoadingBox.appendChild(oCover);
 
-	onpopstate = function (oEvent) {
+	window.onpopstate = function (oEvent) {
 		bUpdateURL = false;
 		oPageInfo.title = oEvent.state.title;
 		oPageInfo.url = oEvent.state.url;
