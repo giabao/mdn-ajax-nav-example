@@ -1,6 +1,7 @@
 "use strict";
 
-const ajaxRequest = new (function () {
+var
+ajaxRequest = new (function () {
 
 	function closeReq () {
 		oLoadingBox.parentNode && document.body.removeChild(oLoadingBox);
@@ -101,7 +102,7 @@ const ajaxRequest = new (function () {
 		for (var oLink, nIdx = 0, nLen = document.links.length; nIdx < nLen; document.links[nIdx++].onclick = processLink);
 	}
 
-	const
+var
 
 	/* customizable constants */
 		sTargetId = "ajax-content", sViewKey = "view_as", sAjaxClass = "ajax-nav",
@@ -187,10 +188,12 @@ const ajaxRequest = new (function () {
 	oCover.appendChild(oLoadingImg);
 	oLoadingBox.appendChild(oCover);
 
-	onpopstate = function (oEvent) {
+	window.onpopstate = function (oEvent) {
 		bUpdateURL = false;
-		oPageInfo.title = oEvent.state.title;
-		oPageInfo.url = oEvent.state.url;
+		if (oEvent.state) {
+			oPageInfo.title = oEvent.state.title;
+			oPageInfo.url = oEvent.state.url;
+		}		
 		getPage();
 	};
 
