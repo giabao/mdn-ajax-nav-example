@@ -1,6 +1,6 @@
 "use strict";
 
-const ajaxRequest = new (function () {
+var ajaxRequest = new (function () {
 
 	function closeReq () {
 		oLoadingBox.parentNode && document.body.removeChild(oLoadingBox);
@@ -101,7 +101,7 @@ const ajaxRequest = new (function () {
 		for (var oLink, nIdx = 0, nLen = document.links.length; nIdx < nLen; document.links[nIdx++].onclick = processLink);
 	}
 
-	const
+	var
 
 	/* customizable constants */
 		sTargetId = "ajax-content", sViewKey = "view_as", sAjaxClass = "ajax-nav",
@@ -110,7 +110,7 @@ const ajaxRequest = new (function () {
 		rSearch = /\?.*$/, rHost = /^[^\?]*\?*&*/, rView = new RegExp("&" + sViewKey + "\\=[^&]*|&*$", "i"), rEndQstMark = /\?$/,
 		oLoadingBox = document.createElement("div"), oCover = document.createElement("div"), oLoadingImg = new Image(),
 		oPageInfo = {
-			title: null,
+			title: document.title,
 			url: location.href
 		}, oHTTPStatus = /* http://www.iana.org/assignments/http-status-codes/http-status-codes.xml */ {
 			100: "Continue",
@@ -201,5 +201,8 @@ const ajaxRequest = new (function () {
 	this.open = requestPage;
 	this.stop = abortReq;
 	this.rebuildLinks = init;
+
+    history.replaceState(oPageInfo, oPageInfo.title, oPageInfo.url);
+
 
 })();
