@@ -98,6 +98,7 @@ const ajaxRequest = new (function () {
 
 	function init () {
 		oPageInfo.title = document.title;
+		history.replaceState(oPageInfo, oPageInfo.title, oPageInfo.url);
 		for (var oLink, nIdx = 0, nLen = document.links.length; nIdx < nLen; document.links[nIdx++].onclick = processLink);
 	}
 
